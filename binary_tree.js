@@ -32,8 +32,8 @@ function Node(val, l_child, r_child, x, y) {
         if(this.left_child != null) {
             this.left_child.visit();
         }
-        console.log(this.val);
 
+        // Draw Node
         fill(0);
         ellipse(this.x + 12, this.y - 10, 50,50);
         fill(255);

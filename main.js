@@ -15,9 +15,10 @@ function setup() {
     canvas.parent('sketch');
     background(200, 200, 200);
 
-    tree.addValue(50);
 }
 
 function draw() {
-    tree.traverse();
+    if(tree.root != null) {
+        tree.traverse();
+    }
 }

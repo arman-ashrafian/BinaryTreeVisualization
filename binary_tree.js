@@ -52,6 +52,10 @@ function BinaryTree() {
     this.addValue = function(val) {
         if(this.root === null) {
             this.root = new Node(val, null, null, screen_mid,100);
+            fill(0);
+            ellipse(screen_mid + 12, 90, 50, 50);
+            textSize(24);
+            text(val.toString(), screen_mid, 100);
         } else {
             this.root.addNode(val, 0);
         }
@@ -62,11 +66,3 @@ function BinaryTree() {
     }
 
 }
-
-// var bt = new BinaryTree();
-// bt.addValue(5);
-// bt.addValue(4);
-// bt.addValue(7);
-// bt.addValue(10);
-// bt.addValue(12);
-// console.log(bt);

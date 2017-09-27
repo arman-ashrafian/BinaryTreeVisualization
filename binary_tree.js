@@ -3,11 +3,6 @@ var screen_mid = Math.floor(window_width/2);
 var NODE_RADIUS = 40;
 var FONT_SIZE = 14;
 
-var inOrderList = $("#InOrder");
-var preOrderList = ("#PreOrder");
-var postOrderList = ("#PostOrder");
-var bftList = $("#BFT");
-
 
 function Node(val, l_child, r_child, x, y) {
     this.val = val;
@@ -36,7 +31,7 @@ function Node(val, l_child, r_child, x, y) {
         }
     }
 
-    /** Draw Nodes on Canvas **/
+    // Draw Nodes on Canvas
     this.displayNodes = function() {
         if(this.left_child != null) {
             this.left_child.displayNodes();
@@ -59,7 +54,7 @@ function Node(val, l_child, r_child, x, y) {
             this.left_child.traverse_inOrder();
         }
 
-        // add to html <ul>
+        // add value to html <ul>
         $("#InOrder").append("<li>" + this.val.toString() + "</li>");
 
         if(this.right_child != null) {
@@ -68,6 +63,7 @@ function Node(val, l_child, r_child, x, y) {
     }
 
     this.traverse_preOrder = function() {
+        // add value to html <ul>
         $("#PreOrder").append("<li>" + this.val.toString() + "</li>");
 
         if(this.left_child != null) {
@@ -85,24 +81,9 @@ function Node(val, l_child, r_child, x, y) {
         if(this.right_child != null) {
             this.right_child.traverse_postOrder();
         }
+        // add value to html <ul>
         $("#PostOrder").append("<li>" + this.val.toString() + "</li>");
 
-    }
-
-    this.traverse_breadthFirst = function() {
-        console.log(this.val)
-        if(this.left_child != null) {
-            console.log(this.left_child.val);
-        }
-        if(this.right_child != null) {
-            console.log(this.right_child.val);
-        }
-        if(this.left_child != null) {
-            this.left_child.traverse_breadthFirst();
-        }
-        if(this.right_child != null) {
-            this.right_child.traverse_breadthFirst();
-        }
     }
 }
 
@@ -138,9 +119,30 @@ function BinaryTree() {
     }
 
     this.traverse_breadthFirst = function() {
-        if(this.root != null) {
-            this.root.traverse_breadthFirst();
+        if(this.root == null) { return undefined; }
+
+        let queue = new Queue();
+        let traverse = 0;
+
+        queue.enqueue(this.root);
+        // add value to html <ul>
+        $("#BFT").append("<li>" + this.root.val.toString() + "</li>");
+
+        while(!queue.isEmpty()) {
+            traverse = queue.dequeue();
+
+            if(traverse.left_child != null) {
+                queue.enqueue(traverse.left_child);
+                // add value to html <ul>
+                $("#BFT").append("<li>" + traverse.left_child.val.toString() + "</li>");
+            }
+            if(traverse.right_child != null) {
+                queue.enqueue(traverse.right_child);
+                // add value to html <ul>
+                $("#BFT").append("<li>" + traverse.right_child.val.toString() + "</li>");
+            }
         }
+
     }
 
 }

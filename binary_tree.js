@@ -3,6 +3,11 @@ var screen_mid = Math.floor(window_width/2);
 var NODE_RADIUS = 40;
 var FONT_SIZE = 14;
 
+var inOrderList = $("#InOrder");
+var preOrderList = ("#PreOrder");
+var postOrderList = ("#PostOrder");
+var bftList = $("#BFT");
+
 
 function Node(val, l_child, r_child, x, y) {
     this.val = val;
@@ -31,6 +36,7 @@ function Node(val, l_child, r_child, x, y) {
         }
     }
 
+    /** Draw Nodes on Canvas **/
     this.displayNodes = function() {
         if(this.left_child != null) {
             this.left_child.displayNodes();
@@ -53,7 +59,8 @@ function Node(val, l_child, r_child, x, y) {
             this.left_child.traverse_inOrder();
         }
 
-        console.log(this.val.toString());
+        // add to html <ul>
+        $("#InOrder").append("<li>" + this.val.toString() + "</li>");
 
         if(this.right_child != null) {
             this.right_child.traverse_inOrder();
@@ -61,7 +68,7 @@ function Node(val, l_child, r_child, x, y) {
     }
 
     this.traverse_preOrder = function() {
-        console.log(this.val);
+        $("#PreOrder").append("<li>" + this.val.toString() + "</li>");
 
         if(this.left_child != null) {
             this.left_child.traverse_preOrder();
@@ -78,7 +85,8 @@ function Node(val, l_child, r_child, x, y) {
         if(this.right_child != null) {
             this.right_child.traverse_postOrder();
         }
-        console.log(this.val);
+        $("#PostOrder").append("<li>" + this.val.toString() + "</li>");
+
     }
 
     this.traverse_breadthFirst = function() {

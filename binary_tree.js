@@ -1,5 +1,8 @@
 var window_width = $(document).width();
 var screen_mid = Math.floor(window_width/2);
+var NODE_RADIUS = 40;
+var FONT_SIZE = 14;
+
 
 function Node(val, l_child, r_child, x, y) {
     this.val = val;
@@ -28,20 +31,69 @@ function Node(val, l_child, r_child, x, y) {
         }
     }
 
-    this.visit = function() {
+    this.displayNodes = function() {
         if(this.left_child != null) {
-            this.left_child.visit();
+            this.left_child.displayNodes();
         }
 
         // Draw Node
         fill(0);
-        ellipse(this.x + 12, this.y - 10, 50,50);
+        ellipse(this.x + 12, this.y - 8, NODE_RADIUS,NODE_RADIUS);
         fill(255);
-        textSize(24);
+        textSize(FONT_SIZE);
         text(this.val.toString(), this.x, this.y);
 
         if(this.right_child != null) {
-            this.right_child.visit();
+            this.right_child.displayNodes();
+        }
+    }
+
+    this.traverse_inOrder = function() {
+        if(this.left_child != null) {
+            this.left_child.traverse_inOrder();
+        }
+
+        console.log(this.val.toString());
+
+        if(this.right_child != null) {
+            this.right_child.traverse_inOrder();
+        }
+    }
+
+    this.traverse_preOrder = function() {
+        console.log(this.val);
+
+        if(this.left_child != null) {
+            this.left_child.traverse_preOrder();
+        }
+        if(this.right_child != null) {
+            this.right_child.traverse_preOrder();
+        }
+    }
+
+    this.traverse_postOrder = function() {
+        if(this.left_child != null) {
+            this.left_child.traverse_postOrder();
+        }
+        if(this.right_child != null) {
+            this.right_child.traverse_postOrder();
+        }
+        console.log(this.val);
+    }
+
+    this.traverse_breadthFirst = function() {
+        console.log(this.val)
+        if(this.left_child != null) {
+            console.log(this.left_child.val);
+        }
+        if(this.right_child != null) {
+            console.log(this.right_child.val);
+        }
+        if(this.left_child != null) {
+            this.left_child.traverse_breadthFirst();
+        }
+        if(this.right_child != null) {
+            this.right_child.traverse_breadthFirst();
         }
     }
 }
@@ -53,16 +105,34 @@ function BinaryTree() {
         if(this.root === null) {
             this.root = new Node(val, null, null, screen_mid,100);
             fill(0);
-            ellipse(screen_mid + 12, 90, 50, 50);
-            textSize(24);
+            ellipse(screen_mid + 12, 90, NODE_RADIUS, NODE_RADIUS);
+            textSize(FONT_SIZE);
             text(val.toString(), screen_mid, 100);
         } else {
             this.root.addNode(val, 0);
         }
     }
 
-    this.traverse = function() {
-        this.root.visit();
+    this.displayTree = function() {
+        this.root.displayNodes();
+    }
+
+    this.traverse_inOrder = function() {
+        this.root.traverse_inOrder();
+    }
+
+    this.traverse_preOrder = function() {
+        this.root.traverse_preOrder();
+    }
+
+    this.traverse_postOrder = function() {
+        this.root.traverse_postOrder();
+    }
+
+    this.traverse_breadthFirst = function() {
+        if(this.root != null) {
+            this.root.traverse_breadthFirst();
+        }
     }
 
 }

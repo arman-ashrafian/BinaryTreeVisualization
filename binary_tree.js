@@ -107,25 +107,39 @@ function BinaryTree() {
     }
 
     this.traverse_inOrder = function() {
+        $('#InOrder').empty();
+        $('#InOrder').append('<h3>In Order Traversal</h3>');
+
         this.root.traverse_inOrder();
+
     }
 
     this.traverse_preOrder = function() {
+        $('#PreOrder').empty();
+        $('#PreOrder').append('<h3>Pre Order Traversal</h3>');
+
         this.root.traverse_preOrder();
     }
 
     this.traverse_postOrder = function() {
+        $('#PostOrder').empty();
+        $('#PostOrder').append('<h3>Post Order Traversal</h3>');
+
         this.root.traverse_postOrder();
     }
 
     this.traverse_breadthFirst = function() {
         if(this.root == null) { return undefined; }
 
+        $('#BFT').empty();
+        $('#BFT').append('<h3>Breadth First Traversal</h3>');
+
         let queue = new Queue();
         let traverse = 0;
 
         queue.enqueue(this.root);
-        // add value to html <ul>
+
+        // append to BFT list
         $("#BFT").append("<li>" + this.root.val.toString() + "</li>");
 
         while(!queue.isEmpty()) {
@@ -144,5 +158,4 @@ function BinaryTree() {
         }
 
     }
-
 }

@@ -1,8 +1,4 @@
-# CS1D-BinaryTree
-### Assignment #4
+# Binary Tree Visualization
 
-Binary Tree visualization
-
-Try it out!
-https://arman-ashrafian.github.io/CS1D-BinaryTree/
+##### demo https://arman-ashrafian.github.io/CS1D-BinaryTree/
 

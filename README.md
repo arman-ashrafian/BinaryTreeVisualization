@@ -1,4 +1,4 @@
 # Binary Tree Visualization
 
-##### demo https://arman-ashrafian.github.io/CS1D-BinaryTree/
+##### demo https://arman-ashrafian.github.io/BinaryTreeVisualization/
 
